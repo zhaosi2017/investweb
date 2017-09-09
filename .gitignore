@@ -4,4 +4,3 @@ yii_test
 .idea
 init.bat
 usercenter.php
-vendor/*
