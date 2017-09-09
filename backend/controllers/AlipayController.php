@@ -73,27 +73,30 @@ class AlipayController extends PController
                 }
 
                 if(!empty($data)) {
-                    $userId = Yii::$app->user->id ? Yii::$app->user->id: 0;
                     $_data = [];
                     foreach ($data as $key => $val) {
+                        $tmp = [];
                         $tmp['系统日期'] = $val['协查系统日期'];
                         $tmp['名例名称'] = $val['实例名称'];
                         $tmp['名例详情'] = $val['实例详情'];
                         $tmp['调取账户'] = $val['调取账户'];
                         $tmp['time'] = isset($val['系统日期'])? strtotime($val['系统日期']):'0';
                         $_data[$key] = $tmp;
+                        $count  = count($_data);
+                        if ($count >= 500) {
+                            try {
+                                Yii::$app->db->createCommand()
+                                    ->batchInsert(Alipay::tableName(), ['systime', 'title', 'detail', 'account', 'time'],
+                                        $_data)
+                                    ->execute();
+                                $_data = [];
+                            } catch (Exception $e) {
+                                Yii::$app->session->setFlash('error',substr($e->getMessage(),0,100));
+                                return $this->redirect('index')->send();
+                            }
+                        }
                     }
 
-                    try {
-                        Yii::$app->db->createCommand()
-                            ->batchInsert(Alipay::tableName(), ['systime', 'title', 'detail', 'account', 'time'],
-                                $_data)
-                            ->execute();
-
-                    } catch (Exception $e) {
-                        Yii::$app->session->setFlash('error',substr($e->getMessage(),0,100));
-                        return $this->redirect('index')->send();
-                    }
                 }else{
                     Yii::$app->session->setFlash('info','导入的数据为空');
                     return $this->render('create',['model'=>$model]);
