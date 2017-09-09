@@ -43,9 +43,8 @@ CREATE TABLE `admin` (
   `create_at` int(11) DEFAULT '0',
   `update_at` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
---
---账号admin@one, admin@123
---
+
+/*账号admin@one, admin@123 */
 INSERT INTO `admin` (`id`, `auth_key`, `password`, `account`, `nickname`, `status`, `remark`, `login_ip`, `create_id`, `update_id`, `create_at`, `update_at`) VALUES
 (1, '0e2Gglmn7GjxbhsTamBi-oAQROyyGz6O', '$2y$13$mzYNon/zzR/70WDC3.cwNuZ4AQ47vPL/mmq904JJuVzRLWofTW5iy', 'z8BrRCkb9inlRiX8yKWTijk2NmY1ZjcyOWIyOTRlOThjNGYxMGJhNzMzMzM3NzY0NmM0YjcyYjYwZWY2MTU5ZDUwZTUwODA3M2E2ZjE4YzF4+fbKDp0YFH2rTpD31CgW9xqIw67UP53pNXc2R8YHrQ==', '超级管理员', 0, NULL, '', 1, 1, 1504886643, 1504886643);
 

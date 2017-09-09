@@ -13,5 +13,5 @@ return [
         'invest' => '协查信息',
     ],
     // 指定那个用户为超级管理员.
-    'administrator' => 'test1234',
+    'administrator' => 'admin@one',
 ];
