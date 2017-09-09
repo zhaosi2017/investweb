@@ -60,7 +60,7 @@ class AlipaySearch extends Alipay
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => 20,
             ],
         ]);
         $this->load($params);
