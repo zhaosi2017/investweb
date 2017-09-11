@@ -19,6 +19,7 @@ use yii\web\NotFoundHttpException;
 use backend\models\MyDbManager;
 use backend\models\LoginLogsSearch;
 use yii\web\UploadedFile;
+use SphinxClient;
 /**
  * ManagerController implements the CRUD actions for Manager model.
  */
@@ -27,9 +28,6 @@ class AlipayController extends PController
 
     public function actionIndex()
     {
-
-
-
         $searchModel = new AlipaySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -80,7 +78,7 @@ class AlipayController extends PController
                         $tmp['名例名称'] = $val['实例名称'];
                         $tmp['名例详情'] = $val['实例详情'];
                         $tmp['调取账户'] = $val['调取账户'];
-                        $tmp['time'] = isset($val['系统日期'])? strtotime($val['系统日期']):'0';
+                        $tmp['time'] = isset($tmp['系统日期'])? strtotime($tmp['系统日期']):'0';
                         $_data[$key] = $tmp;
                         $count  = count($_data);
                         if ($count >= 500) {
@@ -94,6 +92,19 @@ class AlipayController extends PController
                                 Yii::$app->session->setFlash('error',substr($e->getMessage(),0,100));
                                 return $this->redirect('index')->send();
                             }
+                        }
+                    }
+
+                    // 少于500的情况.
+                    if (!empty($_data)) {
+                        try {
+                            Yii::$app->db->createCommand()
+                                ->batchInsert(Alipay::tableName(), ['systime', 'title', 'detail', 'account', 'time'],
+                                    $_data)
+                                ->execute();
+                        } catch (Exception $e) {
+                            Yii::$app->session->setFlash('error',substr($e->getMessage(),0,100));
+                            return $this->redirect('index')->send();
                         }
                     }
 

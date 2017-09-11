@@ -24,7 +24,8 @@
         "kartik-v/yii2-field-range":"*",
         "yiidoc/yii2-redactor": "*",
         "moonlandsoft/yii2-phpexcel": "*",
-        "xiaogouxo/yii2-ip2region": "dev-master"
+        "xiaogouxo/yii2-ip2region": "dev-master",
+        "yiisoft/yii2-sphinx": "~2.0.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -3,4 +3,5 @@ yii_test
 .DS_Store
 .idea
 init.bat
-usercenter.php
+vendor/composer/*
+composer.lock

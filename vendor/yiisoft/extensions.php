@@ -129,4 +129,13 @@ return array (
       '@moonland/phpexcel' => $vendorDir . '/moonlandsoft/yii2-phpexcel',
     ),
   ),
+  'yiisoft/yii2-sphinx' => 
+  array (
+    'name' => 'yiisoft/yii2-sphinx',
+    'version' => '2.0.8.0',
+    'alias' => 
+    array (
+      '@yii/sphinx' => $vendorDir . '/yiisoft/yii2-sphinx',
+    ),
+  ),
 );
