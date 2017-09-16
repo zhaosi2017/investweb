@@ -31,7 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-sm-12"></div>
                 <label  class="col-sm-2" for=""></label>
 
-                <span id="detailspan"  style="color: red;" class="col-sm-4"><?php if(isset(($model->getErrors()['detail'])[0])){ echo ($model->getErrors()['detail'])[0];} ?></span>
+                <span id="detailspan"  style="color: red;" class="col-sm-4">
+                    <?php
+                        $errors = $model->getErrors();
+                        if(isset($errors['detail'][0])) {
+                            echo $errors['detail'][0];
+                        }
+                    ?>
+                </span>
                 <div class="col-sm-6"></div>
                 <div class="col-sm-12"></div>
             </div>
@@ -45,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             </div>
             <div class="col-sm-12"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
                 <label class="col-sm-2" for="systime">系统日期</label>
                 <div class="col-sm-4">
                 <input class=" form-control"  name="Alipay[systime]" id = "systime" type="text" value="<?php echo $model->systime;?>">

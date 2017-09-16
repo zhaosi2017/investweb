@@ -3,7 +3,7 @@ return [
     'adminEmail' => 'admin@example.com',
     'inputKey'   => 'CustomerSystem@Yii2+H+',
     'timeSwith' => 0,//开启按时间搜索功能,
-    'updateSwitch'=>0,//开启修改名例详情开关
+    'updateSwitch'=>1,//开启修改名例详情开关
     'oneKeyOut'=>0 ,//一键导出;
      // rbac节点分类.
     'roleModule' => [
