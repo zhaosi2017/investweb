@@ -41,7 +41,25 @@ $updateSwitch = isset(Yii::$app->params['updateSwitch'])? Yii::$app->params['upd
                     <td><?= $v->systime?></td>
                     <td><?= $v->title?></td>
                     <td><?= $v->detail?></td>
-                    <td><?= $v->account?></td>
+                    <td>
+                        <?php
+
+                        $pos = strpos($search_keywords, ',');
+                        if ($pos === false) {
+                            $search_keywords = trim($search_keywords);
+                            $html = str_replace($search_keywords, "<span style='font-weight:bold;color:red'>".$search_keywords."</span>", $v->account);
+                        } else {
+                            $keywordsArr = explode(',', $search_keywords);
+                            $html = $v->account;
+                            foreach ($keywordsArr as $key => $value) {
+                                $search_keywords = trim($value);
+                                $html = str_replace($search_keywords, "<span style='font-weight:bold;color:red'>".$search_keywords."</span>", $html);
+                            }
+                        }
+
+                        echo $html;
+                        ?>
+                    </td>
                     <?php if($updateSwitch){?>
                         <td><a href="<?php echo Url::to(['alipay/update','id'=>$v->id])?>">编辑</a></td>
                     <?php }?>

@@ -192,7 +192,7 @@ class AlipayController extends PController
             Yii::$app->session->setFlash('error','没有相关数据');
             return $this->redirect('index');
         }
-        return $this->render('one-search',['model'=>$models,'pages'=>$pages]);
+        return $this->render('one-search',['model'=>$models,'pages'=>$pages, 'search_keywords' => $title]);
 
     }
 

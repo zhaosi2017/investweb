@@ -33,7 +33,15 @@ $actionId = Yii::$app->requestedAction->id;
             'systime',
             'title:ntext',
             'detail:ntext',
-            'account',
+            [
+                'format'=>'html',
+                'attribute' => 'accounts',
+                'value' => function ($model) use($searchModel) {
+                        $search_keywords = trim($searchModel->search_keywords);
+                        return str_replace($search_keywords, "<span style='font-weight:bold;color:red'>".$search_keywords."</span>", $model->account);
+
+                }
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => '操作',
