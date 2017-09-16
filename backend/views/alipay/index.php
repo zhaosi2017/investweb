@@ -35,7 +35,7 @@ $actionId = Yii::$app->requestedAction->id;
             'detail:ntext',
             [
                 'format'=>'html',
-                'attribute' => 'accounts',
+                'attribute' => 'account',
                 'value' => function ($model) use($searchModel) {
                         $search_keywords = trim($searchModel->search_keywords);
                         return str_replace($search_keywords, "<span style='font-weight:bold;color:red'>".$search_keywords."</span>", $model->account);
